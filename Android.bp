@@ -111,6 +111,7 @@ android_library {
         "androidx.test.rules",
         "telephony_flags_core_java_lib",
         "setupdesign-lottie-loading-layout",
+        "custom-preference",
     ],
 
     plugins: ["androidx.room_room-compiler-plugin"],
