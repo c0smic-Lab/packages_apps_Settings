@@ -113,6 +113,12 @@ android_library {
         "device_policy_aconfig_flags_lib",
         "keyboard_flags_lib",
         "custom-preference",
+        "androidx.fragment_fragment",
+        "androidx.fragment_fragment-ktx",
+        "androidx.preference_preference-ktx",
+        "kotlin-stdlib",
+        "kotlinx_coroutines_android",
+        "kotlinx_coroutines",
     ],
 
     plugins: [
