@@ -89,4 +89,7 @@
     <string name="search_menu">Search settings</string>
     <string name="search_menu_title">Search</string>
     <string name="search_settings">Search</string>
+
+    <!-- Back haptic feedback -->
+    <string name="back_gesture_haptic_title">Back haptic feedback</string>
 </resources>
