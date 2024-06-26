@@ -65,6 +65,11 @@
         android:key="vibration_intensity_category_haptics"
         android:title="@string/accessibility_interactive_haptics_category_title">
 
+        <com.android.settings.custom.preference.SystemSettingSwitchPreference
+            android:key="back_gesture_haptic"
+            android:title="@string/back_gesture_haptic_title"
+            android:defaultValue="true" />
+
         <com.android.settings.widget.SeekBarPreference
             android:key="vibration_intensity_preference_touch"
             android:title="@string/accessibility_touch_vibration_title"
