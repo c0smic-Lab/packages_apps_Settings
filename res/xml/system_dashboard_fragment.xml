@@ -56,6 +56,14 @@
         settings:keywords="@string/keywords_touchpad"
         settings:controller="com.android.settings.inputmethod.TouchpadAndMouseSettingsController"/>
 
+    <!-- Misc Settings -->
+    <Preference
+        android:key="misc_settings"
+        android:title="@string/misc_settings_title"
+        android:icon="@drawable/ic_misc_settings"
+        android:order="-252"
+        android:fragment="com.android.settings.custom.misc.MiscSettings"/>
+
     <Preference
         android:key="touchpad_settings"
         android:title="@string/trackpad_settings"
