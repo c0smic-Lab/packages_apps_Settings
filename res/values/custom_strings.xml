@@ -144,4 +144,9 @@
     <string name="custom_timeout_summary_5mins">5 minutes</string>
     <string name="custom_timeout_summary_10mins">10 minutes</string>
     <string name="custom_timeout_summary_30mins">30 minutes</string>
+
+    <!-- JSON based PIF spoofing -->
+    <string name="spoofing_pif_json_select_title">Select PIF JSON File</string>
+    <string name="spoofing_pif_json_select_summary">Pick PIF JSON file to be used for spoofing play integrity</string>
+    <string name="spoofing_pif_json_select_success">Successfully updated fingerprints. Now reboot to take effect.</string>
 </resources>
