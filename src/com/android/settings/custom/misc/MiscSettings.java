@@ -19,15 +19,28 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Iterator;
 
+import android.app.AlertDialog;
+import android.app.DownloadManager;
+import android.content.DialogInterface;
+import android.os.Environment;
+
+import android.content.Context;
+import android.content.res.Resources;
+import android.content.ContentResolver;
+
 import androidx.preference.Preference;
 
 public class MiscSettings extends SettingsPreferenceFragment {
 
     private static final String TAG = "Miscellaneous";
 
-    private static final String KEY_PIF_JSON_FILE_PREFERENCE = "pif_json_file_preference";
-    private Preference mPifJsonFilePreference;
+    private static final String KEY_PIF_JSON_MANAGE_PREFERENCE = "pif_json_manage_preference";
+    private Preference mPifJsonManagePreference;
     private Handler mHandler;
+
+    private Context context;
+    private Resources resources;
+    private ContentResolver resolver;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -35,21 +48,62 @@ public class MiscSettings extends SettingsPreferenceFragment {
 
         addPreferencesFromResource(R.xml.misc_settings);
 
+        context = getContext();
+        resources = context.getResources();
+        resolver = context.getContentResolver();
+
         mHandler = new Handler();
 
-        mPifJsonFilePreference = findPreference(KEY_PIF_JSON_FILE_PREFERENCE);
+        mPifJsonManagePreference = findPreference(KEY_PIF_JSON_MANAGE_PREFERENCE);
     }
 
     @Override
     public boolean onPreferenceTreeClick(Preference preference) {
-        if (preference == mPifJsonFilePreference) {
-            Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-            intent.setType("application/json");
-            startActivityForResult(intent, 10001);
+        if (preference == mPifJsonManagePreference) {
+            onPifManageScreen(context);
             return true;
         }
         return super.onPreferenceTreeClick(preference);
     }
+
+    private void onPifManageScreen(Context context) {
+        final String[] items = {
+            resources.getString(R.string.spoofing_pif_json_download_title),
+            resources.getString(R.string.spoofing_pif_json_select_title),
+        };
+        new AlertDialog.Builder(context)
+            .setTitle(resources.getString(R.string.spoofing_pif_manage_title))
+            .setItems(items, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    if (which == 0) {
+                        downloadPifJson(context);
+                    } else if (which == 1) {
+                        selectPifJson(context);
+                    }
+                }
+            })
+            .show();
+    }
+    private void downloadPifJson(Context context) {
+        DownloadManager downloadManager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
+        Uri uri = Uri.parse(resources.getString(R.string.spoofing_pif_json_download_url));
+        String mes = resources.getString(R.string.spoofing_pif_json_download_message);
+        DownloadManager.Request request = new DownloadManager.Request(uri)
+            .setTitle("pif.json")
+            .setDescription(mes)
+            .setMimeType("application/json")
+            .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
+            .setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "pif.json");
+        downloadManager.enqueue(request);
+        Toast.makeText(context, resources.getString(R.string.spoofing_pif_json_download_message), Toast.LENGTH_LONG).show();
+    }
+    private void selectPifJson(Context context) {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("application/json");
+        startActivityForResult(intent, 10001);
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -77,6 +131,14 @@ public class MiscSettings extends SettingsPreferenceFragment {
                 Log.e(TAG, "Error reading JSON or setting properties", e);
             }
         }
+    }
+
+    @Override
+    public boolean onPreferenceChange(Preference preference, Object newValue) {
+        // final Context context = getContext();
+        context = getContext();
+        final ContentResolver resolver = context.getContentResolver();
+        return false;
     }
 
     @Override
