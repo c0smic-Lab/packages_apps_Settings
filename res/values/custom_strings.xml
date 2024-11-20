@@ -108,7 +108,8 @@
     <string name="reset">Reset</string>
 
     <!-- Misc Settings -->
-    <string name="misc_settings_title">Misc</string>
+    <string name="misc_settings_title">Miscellaneous</string>
+    <string name="misc_settings_summary">Collection of some extra features</string>
 
     <!-- Hotspot extras -->
     <string name="tethering_allow_vpn_upstreams_title">Allow clients to use VPNs</string>

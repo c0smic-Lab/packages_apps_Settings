@@ -50,6 +50,7 @@
     <Preference
         android:key="misc_settings"
         android:title="@string/misc_settings_title"
+        android:summary="@string/misc_settings_summary"
         android:icon="@drawable/ic_misc_settings"
         android:order="-252"
         android:fragment="com.android.settings.custom.misc.MiscSettings"/>
