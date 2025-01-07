@@ -23,6 +23,8 @@ import androidx.preference.Preference;
 
 public class MiscSettings extends SettingsPreferenceFragment {
 
+    private static final String TAG = "Miscellaneous";
+
     private static final String KEY_PIF_JSON_FILE_PREFERENCE = "pif_json_file_preference";
     private Preference mPifJsonFilePreference;
     private Handler mHandler;
