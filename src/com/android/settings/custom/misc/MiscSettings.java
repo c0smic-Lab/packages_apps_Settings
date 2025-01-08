@@ -30,7 +30,7 @@ import android.content.ContentResolver;
 
 import androidx.preference.Preference;
 
-public class MiscSettings extends SettingsPreferenceFragment {
+public class MiscSettings extends SettingsPreferenceFragment implements Preference.OnPreferenceChangeListener {
 
     private static final String TAG = "Miscellaneous";
 
@@ -55,6 +55,10 @@ public class MiscSettings extends SettingsPreferenceFragment {
         mHandler = new Handler();
 
         mPifJsonManagePreference = findPreference(KEY_PIF_JSON_MANAGE_PREFERENCE);
+
+        if (mPifJsonManagePreference != null) {
+            mPifJsonManagePreference.setOnPreferenceChangeListener(this);
+        }
     }
 
     @Override
