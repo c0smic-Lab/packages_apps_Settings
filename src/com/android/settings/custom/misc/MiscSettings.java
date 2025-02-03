@@ -15,6 +15,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import org.json.JSONObject;
+import java.io.File;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Iterator;
@@ -73,7 +74,10 @@ public class MiscSettings extends SettingsPreferenceFragment implements Preferen
                         int columnIndex = cursor.getColumnIndex(DownloadManager.COLUMN_STATUS);
                         if (cursor.getInt(columnIndex) == DownloadManager.STATUS_SUCCESSFUL) {
                             downloading = false;
-                            mHandler.post(() -> loadPifJson(Uri.parse("file://" + filePath)));
+                            mHandler.post(() -> {
+                                loadPifJson(Uri.parse("file://" + filePath));
+                                deleteFileAfterImport(filePath);
+                            });
                         }
                     }
                 }
@@ -103,6 +107,14 @@ public class MiscSettings extends SettingsPreferenceFragment implements Preferen
         } catch (Exception e) {
             Log.e(TAG, "Error reading JSON or setting properties", e);
             Toast.makeText(getContext(), R.string.spoofing_pif_json_select_failure, Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void deleteFileAfterImport(String filePath) {
+        File file = new File(filePath);
+        if (file.exists()) {
+            boolean deleted = file.delete();
+            Log.d(TAG, "Deleted pif.json: " + deleted);
         }
     }
 
