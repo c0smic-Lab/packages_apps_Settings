@@ -147,10 +147,8 @@
 
     <!-- JSON based PIF spoofing -->
     <string name="spoofing_pif_manage_title">Play Integrity spoofing</string>
-    <string name="spoofing_pif_json_download_title">Download the general PIF JSON</string>
     <string name="spoofing_pif_json_download_message">Downloading latest pif.json</string>
-    <string name="spoofing_pif_json_select_title">Select PIF JSON File and Apply</string>
-    <string name="spoofing_pif_json_select_summary">Download or pick PIF JSON file to be used for spoofing play integrity</string>
+    <string name="spoofing_pif_json_select_summary">Download and load the PIF JSON file from official PIF repo for passing play integrity</string>
     <string name="spoofing_pif_json_select_success">Successfully updated fingerprints. Now reboot to take effect.</string>
     <string name="spoofing_pif_json_select_failure">Failed to complete the operation.</string>
 </resources>
