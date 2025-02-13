@@ -19,5 +19,5 @@
     <bool name="config_show_battery_cycle_count" translatable="false">true</bool>
 
     <!-- Download PIF JSON target -->
-    <string name="spoofing_pif_json_download_url">https://raw.githubusercontent.com/chiteroman/PlayIntegrityFix/main/module/pif.json</string>
+    <string name="spoofing_pif_json_download_url">https://raw.githubusercontent.com/aosPB-Project/PlayIntegrityFix/refs/heads/main/module/pif.json</string>
 </resources>
