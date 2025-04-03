@@ -4,13 +4,6 @@
         android:key="misc_settings"
         android:title="@string/misc_settings_title">
 
-        <!-- Google Play Integrity -->
-        <com.android.settings.custom.preference.SystemPropertySwitchPreference
-            android:key="persist.sys.pihooks.pi"
-            android:title="@string/pi_spoof_title"
-            android:summary="@string/pi_spoof_summary"
-            android:defaultValue="true" />
-
         <com.android.settings.custom.preference.GlobalSettingSwitchPreference
             android:key="window_ignore_secure"
             android:title="@string/ignore_window_secure_title"
